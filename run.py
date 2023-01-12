@@ -70,6 +70,28 @@ class Game():
         """
         self.cells[cell_y][cell_x] = player
 
+    def check_winner(self, winner, player):
+        if all([self.cells[0][0] == player, self.cells[0][1] == player, self.cells[0][2] == player]):
+            winner = player
+        elif all([self.cells[1][0] == player, self.cells[1][1] == player, self.cells[1][2] == player]):
+            winner = player
+        elif all([self.cells[2][0] == player, self.cells[2][1] == player, self.cells[2][2] == player]):
+            winner = player
+        elif all([self.cells[0][0] == player, self.cells[1][0] == player, self.cells[2][0] == player]):
+            winner = player
+        elif all([self.cells[0][1] == player, self.cells[1][1] == player, self.cells[2][1] == player]):
+            winner = player
+        elif all([self.cells[0][2] == player, self.cells[1][2] == player, self.cells[2][2] == player]):
+            winner = player
+        elif all([self.cells[0][0] == player, self.cells[1][1] == player, self.cells[2][2] == player]):
+            winner = player
+        elif all([self.cells[2][0] == player, self.cells[1][1] == player, self.cells[0][2] == player]):
+            winner = player
+        else:
+            winner = None
+
+        return winner
+
 
 def main():
     """
@@ -84,6 +106,7 @@ def main():
         player = game.swap_player(player)
         game.player_turn(player, game)
         game.display()
+        winner = game.check_winner(winner, player)
 
 
 main()
