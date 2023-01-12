@@ -1,3 +1,5 @@
+import random
+
 class Game():
     def __init__(self):
         """
@@ -15,6 +17,26 @@ class Game():
         print(f"{self.cells[1][0]} | {self.cells[1][1]} | {self.cells[1][2]}")
         print("-- --- --")
         print(f"{self.cells[2][0]} | {self.cells[2][1]} | {self.cells[2][2]}\n")
+
+    def choose_players(self):
+        """
+        Allows user to choose 1 player or 2 players
+        1 player mode is versus the computer
+        2 player mode is versus a human
+        """
+        while True:
+            try:
+                player_amount = input("Enter amount of players (1 or 2):\n")
+                if player_amount.isdigit():
+                    player_amount = int(player_amount)
+                else:
+                    raise ValueError()
+                if 1 <= player_amount <= 2:
+                    break
+                raise ValueError()
+            except ValueError:
+                print("Please enter a value 1 or 2")
+        return player_amount
 
     def swap_player(self, player):
         """
@@ -70,6 +92,15 @@ class Game():
             print("This space is already occupied, please try again")
             game.player_turn(player, game)
 
+    def computer_turn(self, player, board):
+        player_choice = []
+        x = random.randint(0, 2)
+        y = random.randint(0, 2)
+        player_choice = [y, x]
+        cell = board.check_cell(player_choice[0], player_choice[1], player)
+        if cell is False:
+            board.computer_turn(player, board)
+
     def check_winner(self, winner, player):
         """
         Checks all possible win conditions
@@ -117,11 +148,18 @@ def main():
     game.display()
     player = ''
     winner = None
+    num_of_players = game.choose_players()
     while winner is None:
         player = game.swap_player(player)
         game.player_turn(player, game)
         game.display()
         winner = game.check_winner(winner, player)
+        if num_of_players == 1:
+            player = game.swap_player(player)
+            print("Computer's Turn")
+            game.computer_turn(player, game)
+            game.display()
+            winner = game.check_winner(winner, player)
 
     print(f"Winner is player {winner}")
 
