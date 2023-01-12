@@ -16,6 +16,16 @@ class Game():
         print("-- --- --")
         print(f"{self.cells[2][0]} | {self.cells[2][1]} | {self.cells[2][2]}\n")
 
+    def swap_player(self, player):
+        """
+        Changes player orientation
+        """
+        if player == 'X':
+            player = 'O'
+        else:
+            player = 'X'
+        return player
+
     def player_turn(self, player):
         """
         Takes in user input between values 1 and 3
@@ -48,20 +58,19 @@ class Game():
         self.cells[cell_y][cell_x] = player
 
 
-
 def main():
     """
     Main function
     """
     print("\nWelcome to the Noughts and Crosses Terminal Game")
-    board = Game()
-    board.display()
-    player = 'X'
+    game = Game()
+    game.display()
+    player = ''
     winner = None
     while winner is None:
-        board.player_turn(player)
-        board.display()
-        # print(player_choice)
+        player = game.swap_player(player)
+        game.player_turn(player)
+        game.display()
 
 
 main()
