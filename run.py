@@ -1,8 +1,14 @@
 class Game():
     def __init__(self):
+        """
+        Creates the gameboard for user inputs to be placed
+        """
         self.cells = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
 
     def display(self):
+        """
+        Displays the gameboard to the terminal
+        """
         print()
         print(f"{self.cells[0][0]} | {self.cells[0][1]} | {self.cells[0][2]}")
         print("-- --- --")
@@ -11,6 +17,9 @@ class Game():
         print(f"{self.cells[2][0]} | {self.cells[2][1]} | {self.cells[2][2]}\n")
 
     def player_turn(self, player):
+        """
+        Takes in user input between values 1 and 3
+        """
         player_choice = []
         print(f"\nPlayer {player}'s turn\n")
         while True:
@@ -29,7 +38,15 @@ class Game():
                 print("Invalid input. Please enter values between 1 and 3")
                 continue
         player_choice = [y - 1, x - 1]
-        return player_choice
+        self.update_cell(player_choice[0], player_choice[1], player)
+        # return player_choice
+
+    def update_cell(self, cell_y, cell_x, player):
+        """
+        Appends user input to the board
+        """
+        self.cells[cell_y][cell_x] = player
+
 
 
 def main():
@@ -39,13 +56,12 @@ def main():
     print("\nWelcome to the Noughts and Crosses Terminal Game")
     board = Game()
     board.display()
-    player = ''
+    player = 'X'
     winner = None
     while winner is None:
-        player_choice = board.player_turn(player)
-        print(player_choice)
-
-
+        board.player_turn(player)
+        board.display()
+        # print(player_choice)
 
 
 main()
