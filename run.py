@@ -16,6 +16,16 @@ class Game():
         print("-- --- --")
         print(f"{self.cells[2][0]} | {self.cells[2][1]} | {self.cells[2][2]}\n")
 
+    def swap_player(self, player):
+        """
+        Changes player orientation
+        """
+        if player == 'X':
+            player = 'O'
+        else:
+            player = 'X'
+        return player
+    
     def check_cell(self, cell_y, cell_x, player):
         """
         Checks if space is free for user input
@@ -26,15 +36,11 @@ class Game():
             return True
         return False
 
-    def swap_player(self, player):
+    def update_cell(self, cell_y, cell_x, player):
         """
-        Changes player orientation
+        Appends user input to the board
         """
-        if player == 'X':
-            player = 'O'
-        else:
-            player = 'X'
-        return player
+        self.cells[cell_y][cell_x] = player
 
     def player_turn(self, player, game):
         """
@@ -64,13 +70,13 @@ class Game():
             print("This space is already occupied, please try again")
             game.player_turn(player, game)
 
-    def update_cell(self, cell_y, cell_x, player):
-        """
-        Appends user input to the board
-        """
-        self.cells[cell_y][cell_x] = player
-
     def check_winner(self, winner, player):
+        """
+        Checks all possible win conditions
+
+        If theres no win after all spaces are filled winner returns as a tie
+        """
+        tie = self.check_tie()
         if all([self.cells[0][0] == player, self.cells[0][1] == player, self.cells[0][2] == player]):
             winner = player
         elif all([self.cells[1][0] == player, self.cells[1][1] == player, self.cells[1][2] == player]):
@@ -87,10 +93,19 @@ class Game():
             winner = player
         elif all([self.cells[2][0] == player, self.cells[1][1] == player, self.cells[0][2] == player]):
             winner = player
+        elif tie is not True:
+            winner = 'Tie'
         else:
             winner = None
-
         return winner
+
+    def check_tie(self):
+        """
+        Function to check if board is full but no winner
+        """
+        empty_space = " "
+        tie = any(empty_space in sublist for sublist in self.cells)
+        return tie
 
 
 def main():
@@ -107,6 +122,8 @@ def main():
         game.player_turn(player, game)
         game.display()
         winner = game.check_winner(winner, player)
+
+    print(f"Winner is player {winner}")
 
 
 main()
