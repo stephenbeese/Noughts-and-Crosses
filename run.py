@@ -161,7 +161,10 @@ def main():
             game.display()
             winner = game.check_winner(winner, player)
 
-    print(f"Winner is player {winner}")
+    if winner == 'Tie':
+        print("You have tied, no winner this time!")
+    else:
+        print(f"Winner is player {winner}")
 
 
 main()
