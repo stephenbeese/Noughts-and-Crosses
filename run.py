@@ -154,6 +154,8 @@ def main():
         game.player_turn(player, game)
         game.display()
         winner = game.check_winner(winner, player)
+        if winner is not None:
+            break
         if num_of_players == 1:
             player = game.swap_player(player)
             print("Computer's Turn")
