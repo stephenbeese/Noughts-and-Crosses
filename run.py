@@ -16,6 +16,16 @@ class Game():
         print("-- --- --")
         print(f"{self.cells[2][0]} | {self.cells[2][1]} | {self.cells[2][2]}\n")
 
+    def check_cell(self, cell_y, cell_x, player):
+        """
+        Checks if space is free for user input
+        If space is not free then user will be required to re-enter their input
+        """
+        if self.cells[cell_y][cell_x] == " ":
+            self.update_cell(cell_y, cell_x, player)
+            return True
+        return False
+
     def swap_player(self, player):
         """
         Changes player orientation
@@ -26,7 +36,7 @@ class Game():
             player = 'X'
         return player
 
-    def player_turn(self, player):
+    def player_turn(self, player, game):
         """
         Takes in user input between values 1 and 3
         """
@@ -48,8 +58,11 @@ class Game():
                 print("Invalid input. Please enter values between 1 and 3")
                 continue
         player_choice = [y - 1, x - 1]
-        self.update_cell(player_choice[0], player_choice[1], player)
-        # return player_choice
+        cell = game.check_cell(player_choice[0], player_choice[1], player)
+        if cell is False:
+            game.display()
+            print("This space is already occupied, please try again")
+            game.player_turn(player, game)
 
     def update_cell(self, cell_y, cell_x, player):
         """
@@ -69,7 +82,7 @@ def main():
     winner = None
     while winner is None:
         player = game.swap_player(player)
-        game.player_turn(player)
+        game.player_turn(player, game)
         game.display()
 
 
