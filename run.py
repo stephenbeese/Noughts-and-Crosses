@@ -138,35 +138,59 @@ class Game():
         tie = any(empty_space in sublist for sublist in self.cells)
         return tie
 
+    def play_again(self, winner):
+        """
+        Function to restart the game or end the program
+        """
+        while winner is not None:
+            try:
+                restart = input("\nWould you like to play again? (Y/N):\n").upper()
+                if restart == "Y":
+                    return True
+                if restart == "N":
+                    return False
+                raise ValueError()
+            except ValueError:
+                print("Invalid input. Please enter Y or N")
+                continue
+
 
 def main():
     """
     Main function
     """
     print("\nWelcome to the Noughts and Crosses Terminal Game")
-    game = Game()
-    game.display()
-    player = ''
-    winner = None
-    num_of_players = game.choose_players()
-    while winner is None:
-        player = game.swap_player(player)
-        game.player_turn(player, game)
+    while True:
+        game = Game()
         game.display()
-        winner = game.check_winner(winner, player)
-        if winner is not None:
-            break
-        if num_of_players == 1:
+        player = ''
+        winner = None
+        num_of_players = game.choose_players()
+        while winner is None:
             player = game.swap_player(player)
-            print("Computer's Turn")
-            game.computer_turn(player, game)
+            game.player_turn(player, game)
             game.display()
             winner = game.check_winner(winner, player)
+            if winner is not None:
+                break
+            if num_of_players == 1:
+                player = game.swap_player(player)
+                print("Computer's Turn")
+                game.computer_turn(player, game)
+                game.display()
+                winner = game.check_winner(winner, player)
 
-    if winner == 'Tie':
-        print("You have tied, no winner this time!")
-    else:
-        print(f"Winner is player {winner}")
+        if winner == 'Tie':
+            print("You have tied, no winner this time!")
+        else:
+            print(f"Winner is player {winner}")
+
+        restart = game.play_again(winner)
+        if restart is True:
+            continue
+        if restart is False:
+            print("\nThanks for playing!")
+            break
 
 
 main()
