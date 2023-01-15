@@ -1,6 +1,7 @@
 import random
 
-class Game():
+
+class Game:
     def __init__(self):
         """
         Creates the gameboard for user inputs to be placed
@@ -42,12 +43,12 @@ class Game():
         """
         Changes player orientation
         """
-        if player == 'X':
-            player = 'O'
+        if player == "X":
+            player = "O"
         else:
-            player = 'X'
+            player = "X"
         return player
-    
+
     def check_cell(self, cell_y, cell_x, player):
         """
         Checks if space is free for user input
@@ -108,24 +109,72 @@ class Game():
         If theres no win after all spaces are filled winner returns as a tie
         """
         tie = self.check_tie()
-        if all([self.cells[0][0] == player, self.cells[0][1] == player, self.cells[0][2] == player]):
+        if all(
+            [
+                self.cells[0][0] == player,
+                self.cells[0][1] == player,
+                self.cells[0][2] == player,
+            ]
+        ):
             winner = player
-        elif all([self.cells[1][0] == player, self.cells[1][1] == player, self.cells[1][2] == player]):
+        elif all(
+            [
+                self.cells[1][0] == player,
+                self.cells[1][1] == player,
+                self.cells[1][2] == player,
+            ]
+        ):
             winner = player
-        elif all([self.cells[2][0] == player, self.cells[2][1] == player, self.cells[2][2] == player]):
+        elif all(
+            [
+                self.cells[2][0] == player,
+                self.cells[2][1] == player,
+                self.cells[2][2] == player,
+            ]
+        ):
             winner = player
-        elif all([self.cells[0][0] == player, self.cells[1][0] == player, self.cells[2][0] == player]):
+        elif all(
+            [
+                self.cells[0][0] == player,
+                self.cells[1][0] == player,
+                self.cells[2][0] == player,
+            ]
+        ):
             winner = player
-        elif all([self.cells[0][1] == player, self.cells[1][1] == player, self.cells[2][1] == player]):
+        elif all(
+            [
+                self.cells[0][1] == player,
+                self.cells[1][1] == player,
+                self.cells[2][1] == player,
+            ]
+        ):
             winner = player
-        elif all([self.cells[0][2] == player, self.cells[1][2] == player, self.cells[2][2] == player]):
+        elif all(
+            [
+                self.cells[0][2] == player,
+                self.cells[1][2] == player,
+                self.cells[2][2] == player,
+            ]
+        ):
             winner = player
-        elif all([self.cells[0][0] == player, self.cells[1][1] == player, self.cells[2][2] == player]):
+        elif all(
+            [
+                self.cells[0][0] == player,
+                self.cells[1][1] == player,
+                self.cells[2][2] == player,
+            ]
+        ):
             winner = player
-        elif all([self.cells[2][0] == player, self.cells[1][1] == player, self.cells[0][2] == player]):
+        elif all(
+            [
+                self.cells[2][0] == player,
+                self.cells[1][1] == player,
+                self.cells[0][2] == player,
+            ]
+        ):
             winner = player
         elif tie is not True:
-            winner = 'Tie'
+            winner = "Tie"
         else:
             winner = None
         return winner
@@ -163,7 +212,7 @@ def main():
     while True:
         game = Game()
         game.display()
-        player = ''
+        player = ""
         winner = None
         num_of_players = game.choose_players()
         while winner is None:
@@ -180,7 +229,7 @@ def main():
                 game.display()
                 winner = game.check_winner(winner, player)
 
-        if winner == 'Tie':
+        if winner == "Tie":
             print("You have tied, no winner this time!")
         else:
             print(f"Winner is player {winner}")

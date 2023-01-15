@@ -17,7 +17,7 @@ The player will then switch to 'O' and will be asked for an X and Y coordinate. 
 
 ### Existing Features
 
-#### 2 player and 1 player modes
+#### 1 and 2 player modes
 - The user has a choice to play one or two players.
 - In one player mode the user plays against a randomly generated computer as 'O'. 
 - In two player mode both X and O require user input allowing the user to play with a friend
@@ -32,7 +32,7 @@ The player will then switch to 'O' and will be asked for an X and Y coordinate. 
 Trying any of these will print error messages to the user asking them to retry within the parameters given.
 
 #### Play Again
-- After the user has played the game they will be asked if they want to start again.
+- After the user has played the game they will be asked if they want to start again. Starting the loop again. 
 
 
 ### Future Features
@@ -40,6 +40,19 @@ Trying any of these will print error messages to the user asking them to retry w
 
 ## Data Model
 <hr>
+I decided to usea Game class model. The game creates an instance of Game class to store the gameboard. 
+
+The class has method that are used to play the game. Such as:
+- <code>display</code> method to print out the current board after each turn.
+- <code>choose_players</code> method recieves user input for 1 or 2 players. This is called at the start of each game.
+- <code>swap_player</code> method changes player <code>X</code> to <code>O</code>. The method is called after each turn. 
+- <code>check_cell</code> method checks if the space inputted by user or randomly generated computer has already been taken. If the space is free the method will call the <code>update_cell</code> method and return <code>True</code>. Otherwise, it will return <code>False</code>. When <code>False</code> has been returned it will recall either <code>player_turn</code> or <code>computer_turn</code> depending on the turn to retry the input. 
+- <code>update_cell</code> method will be called if it has passed the <code>check_cell</code> method. This means the cell won't update if its already taken. 
+- <code>player_turn</code> method to recieve user input. The method then creates an empty <code>player_choice</code> list to hold the X and Y coordinates which are used to determine the place in the game board list. The user will only be able to input numbers 1-3 for both the X and Y coordinates. If the user tries inputting values outside of the this range it will raise a <code>ValueError</code> and ask the user to input values within that range. If the user inputs a value that has already been taken, the <code>check_cell</code> method will return <code>False</code> and execute a <code>display</code> method and <code>print</code> to inform the user and then recall the <code>player_turn</code> to retake their input. This will loop until their input is valid.
+- <code>computer_turn</code> method to recieve randomly generated input. The input is checked through the <code>check_cell</code> and appends through the <code>update_cell</code> method if it returns <code>True</code>. If <code>check_cell</code> returns <code>False</code>, the computer will regenerate random numbers and check again. This will loop until it returns <code>True</code>.
+- <code>check_winner</code> method 
+- <code>check_tie</code> method
+- <code>play_again</code> method
 
 ## Testing 
 <hr>
