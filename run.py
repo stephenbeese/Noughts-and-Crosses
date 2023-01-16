@@ -17,7 +17,8 @@ class Game:
         print("-- --- --")
         print(f"{self.cells[1][0]} | {self.cells[1][1]} | {self.cells[1][2]}")
         print("-- --- --")
-        print(f"{self.cells[2][0]} | {self.cells[2][1]} | {self.cells[2][2]}\n")
+        print(f"{self.cells[2][0]} | {self.cells[2][1]} | {self.cells[2][2]}")
+        print()
 
     def choose_players(self):
         """
@@ -193,10 +194,10 @@ class Game:
         """
         while winner is not None:
             try:
-                restart = input("\nWould you like to play again? (Y/N):\n").upper()
-                if restart == "Y":
+                restart = input("\nWould you like to play again? (Y/N):\n")
+                if restart.upper() == "Y":
                     return True
-                if restart == "N":
+                if restart.upper() == "N":
                     return False
                 raise ValueError()
             except ValueError:
