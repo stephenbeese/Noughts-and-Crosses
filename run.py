@@ -30,7 +30,7 @@ class Game:
     def choose_players(self):
         """
         Allows user to choose 1 player or 2 players
-        Input will be deemed as invalid if any other value other than 
+        Input will be deemed as invalid if any other value other than
         the numbers 1 or 2 are entered.
         """
         while True:
@@ -112,7 +112,7 @@ class Game:
         Randomly generated computer's turn.
         The computer will generate random X and Y coordinates within
         the range of 0 and 2.
-        This method also calls for a check to ensure the randomly generated 
+        This method also calls for a check to ensure the randomly generated
         coordinates have not already been taken.
         """
         player_choice = []

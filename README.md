@@ -22,21 +22,35 @@ The player will then switch to 'O' and will be asked for an X and Y coordinate. 
 - In one player mode the user plays against a randomly generated computer as 'O'. 
 - In two player mode both X and O require user input allowing the user to play with a friend
 
+#### Random computer generated turns
+- If a user selects 1 player mode they will play against a randomly generated computer turn.
+- The computer turn uses the random library to generate these numbers. The numbers being generated are integers between 0 and 2 to fit the indexing of the game board.
+- I decided to add a computer turn so users if on their own are able to play. 
+
+#### Accepts user input
+This program accepts user input to find:
+- How many players there are
+- What space the player would like to fill
+- Whether they would like to play again after a game has been completed. 
+
 #### Input validation and error checking
 - The user is unable to:
     - Enter coordinates outside of the grid
     - Enter letters when asking for numbers
     - Enter numbers when asking for letters
     - Enter the same space twice
+    - Enter number of players outside of 1 or 2
 
 Trying any of these will print error messages to the user asking them to retry within the parameters given.
 
 #### Play Again
-- After the user has played the game they will be asked if they want to start again. Starting the loop again. 
+- After the user has played the game they will be asked if they want to start again. If a user enters 'Y' the programs main loop will start again. Starting the loop again, will reset the gameboard and then carry on with a new game.
+- If the user selects No the program will end. 
 
 
 ### Future Features
  - Play against a harder cpu that can forsee moves
+ - Allow player to choose 'X' or 'O'
 
 ## Data Model
 <hr>
@@ -59,13 +73,17 @@ The class has method that are used to play the game. Such as:
 
 ### Bugs
 #### Solved Bugs
-
+- When writing this project, I encountered a bug where after a player win in 1 player mode, the computer would still be able to take their go dispite the user winning previously. To fix this I added breaks in the <code>while winner is None:</code> loop in the main() function. The break comes after the win state has been checked which <code>if winner is not None:</code> the code will break out of the loop and announce the winner.
 #### Remaining Bugs
-
+- No bugs remaining
 ### Validator Testing
+- PEP8
+    - No errors were returned through [CI Python Linter](https://pep8ci.herokuapp.com/)
 
 ## Deployment
 <hr>
+
+You can find the live link here: [Noughts and Crosses](https://noughts-and-crosses1.herokuapp.com/)
 
 ## Credits
 <hr>
