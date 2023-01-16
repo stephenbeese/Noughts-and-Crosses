@@ -9,6 +9,7 @@ class Game:
     Main class that holds the main gameboard and calls methods
     to run through the game.
     """
+
     def __init__(self):
         """
         Creates the gameboard for user inputs to be placed

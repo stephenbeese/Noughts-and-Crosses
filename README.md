@@ -84,6 +84,8 @@ The class has methods that are used to play the game. Such as:
 - <code>check_winner</code> method checks through 8 possible win conditions. It will check for various wins vertically, horizontally and diagonally to see if these spaces are equal to the player that has just had their turn (X or O). If a win condition is met the method will return the player (X or O) as the winner.
 - <code>check_tie</code> method to check if there are any empty spaces on the board. If there are empty spaces this method will return <code>True</code>. If not, it will return <code>False</code>. This method is called through the <code>check_winner</code> method. If no win conditions are true and <code>check_tie</code> is <code>check_winner</code> will return the winner as <code>"Tie"</code>
 - <code>play_again</code> method asks the user if they would like to play again after a game has been completed. If the user enters Y, the main() function while loop will restart. If the user enters N the program will close and thank them for playing.
+
+![Flow Chart](/assets/images/flow-chart.png)
  
 ## Testing
 <hr>
