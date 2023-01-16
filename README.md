@@ -1,7 +1,9 @@
 # Noughts and Crosses Terminal Game
 
-## How To Play
+![Responsive](/assets/images/responsive.png)
 
+## How To Play
+<hr>
 Noughts and Crosses is an in terminal version of a classic pen-and-paper game Tic-Tac-Toe, more commonly known in the UK as Noughts and Crosses.
 
 The aim of the game is match 3 of your own pieces in a row, horizontally, vertically or diagonally.
@@ -22,16 +24,22 @@ The player will then switch to 'O' and will be asked for an X and Y coordinate. 
 - In one player mode the user plays against a randomly generated computer as 'O'. 
 - In two player mode both X and O require user input allowing the user to play with a friend
 
+![Players](/assets/images/players.png)
+
 #### Random computer generated turns
 - If a user selects 1 player mode they will play against a randomly generated computer turn.
 - The computer turn uses the random library to generate these numbers. The numbers being generated are integers between 0 and 2 to fit the indexing of the game board.
-- I decided to add a computer turn so users if on their own are able to play. 
+- I decided to add a computer turn so users if on their own are able to play.
+
+![Computer Turn](/assets/images/computer-turn.png)
 
 #### Accepts user input
 This program accepts user input to find:
 - How many players there are
 - What space the player would like to fill
 - Whether they would like to play again after a game has been completed. 
+
+![User Input](/assets/images/user-input.png)
 
 #### Input validation and error checking
 - The user is unable to:
@@ -42,11 +50,18 @@ This program accepts user input to find:
     - Enter number of players outside of 1 or 2
 
 Trying any of these will print error messages to the user asking them to retry within the parameters given.
+Here are some examples:
+
+![Amount of Players Validation](/assets/images/players-validation.png)
+
+![Taken Space Validation](/assets/images/input-validation.png)
+
 
 #### Play Again
 - After the user has played the game they will be asked if they want to start again. If a user enters 'Y' the programs main loop will start again. Starting the loop again, will reset the gameboard and then carry on with a new game.
 - If the user selects No the program will end. 
 
+![Play Again](/assets/images/play-again.png)
 
 ### Future Features
  - Play against a harder cpu that can forsee moves
@@ -79,9 +94,18 @@ The class has method that are used to play the game. Such as:
 ### Validator Testing
 - PEP8
     - No errors were returned through [CI Python Linter](https://pep8ci.herokuapp.com/)
+![PEP8 Validator](/assets/images/pep8.png)
 
 ## Deployment
 <hr>
+Steps for deployment:
+- Add requirements to requirements.txt file by typing into the terminal <code>pip3 freeze > requirements.txt</code> and pressing Enter.
+- Once the .txt file has been updated, create a new app on your heroku. 
+- Navigate to settings and find the buildbacks section. Once in the buildbacks section add <code>Python</code> and <code>NodeJS</code> in that order.
+- After the buildbacks have been done, navigate to the deployment tab. Scroll down until you see 'Deployment method' and link the github repository to the heroku app. 
+- Once these are linked you are ready to click 'Deploy Branch' and the app will start being built. 
+- Once the app has been built you are then able to view the site.
+
 
 You can find the live link here: [Noughts and Crosses](https://noughts-and-crosses1.herokuapp.com/)
 
