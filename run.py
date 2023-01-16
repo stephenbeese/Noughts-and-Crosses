@@ -1,7 +1,14 @@
+"""
+Import random for computer_turn to randomly generate integers
+"""
 import random
 
 
 class Game:
+    """
+    Main class that holds the main gameboard and calls methods
+    to run through the game.
+    """
     def __init__(self):
         """
         Creates the gameboard for user inputs to be placed
@@ -23,8 +30,8 @@ class Game:
     def choose_players(self):
         """
         Allows user to choose 1 player or 2 players
-        1 player mode is versus the computer
-        2 player mode is versus a human
+        Input will be deemed as invalid if any other value other than 
+        the numbers 1 or 2 are entered.
         """
         while True:
             try:
@@ -42,7 +49,8 @@ class Game:
 
     def swap_player(self, player):
         """
-        Changes player orientation
+        Changes player orientation.
+        After each turn the player variable will be changed to the opposite.
         """
         if player == "X":
             player = "O"
@@ -68,7 +76,12 @@ class Game:
 
     def player_turn(self, player, game):
         """
-        Takes in user input between values 1 and 3
+        Takes in user input between values 1 and 3.
+        The input will return invalid if any values outside of these
+        parameters are entered. The user will be prompted to re-enter their
+        input within the given range.
+        As the paramaters are between 1 and 3 the value 1 has been taken off
+        each inputted value to fit the 0 indexing of the self.cells list.
         """
         player_choice = []
         print(f"\nPlayer {player}'s turn\n")
@@ -95,6 +108,13 @@ class Game:
             game.player_turn(player, game)
 
     def computer_turn(self, player, board):
+        """
+        Randomly generated computer's turn.
+        The computer will generate random X and Y coordinates within
+        the range of 0 and 2.
+        This method also calls for a check to ensure the randomly generated 
+        coordinates have not already been taken.
+        """
         player_choice = []
         x = random.randint(0, 2)
         y = random.randint(0, 2)
@@ -182,7 +202,9 @@ class Game:
 
     def check_tie(self):
         """
-        Function to check if board is full but no winner
+        Function to check if the board is full.
+        If there are no empty spaces this method will return False.
+        If there are empty spaces the method will return True.
         """
         empty_space = " "
         tie = any(empty_space in sublist for sublist in self.cells)
@@ -191,6 +213,10 @@ class Game:
     def play_again(self, winner):
         """
         Function to restart the game or end the program
+        after a game has been completed.
+        The user is unable to enter any values except Y(y) or N(n).
+        If a value is entered that isn't either Y or N the user will
+        be asked to enter parameters within the conditions given.
         """
         while winner is not None:
             try:
@@ -233,7 +259,7 @@ def main():
         if winner == "Tie":
             print("You have tied, no winner this time!")
         else:
-            print(f"Winner is player {winner}")
+            print(f"Winner is player {winner}!")
 
         restart = game.play_again(winner)
         if restart is True:
