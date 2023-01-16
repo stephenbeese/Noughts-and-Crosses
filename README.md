@@ -55,6 +55,8 @@ Here are some examples:
 ![Amount of Players Validation](/assets/images/players-validation.png)
  
 ![Taken Space Validation](/assets/images/input-validation.png)
+
+![Player Input Validation](/assets/images/input-validation-2.png)
  
  
 #### Play Again
@@ -113,10 +115,3 @@ You can find the live link here: [Noughts and Crosses](https://noughts-and-cross
 ## Credits
 <hr>
 - Code Institute for the deployment terminal
- 
- 
- 
- 
- 
-
-
