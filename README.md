@@ -101,6 +101,7 @@ The class has methods that are used to play the game. Such as:
  
 ## Deployment
 <hr>
+
 Steps for deployment:
 - Add requirements to requirements.txt file by typing into the terminal <code>pip3 freeze > requirements.txt</code> and pressing Enter.
 - Once the .txt file has been updated, create a new app on your Heroku.
