@@ -29,7 +29,7 @@ The player will then switch to 'O' and will be asked for an X and Y coordinate. 
 #### Random computer-generated turns
 - If a user selects 1 player mode they will play against a randomly generated computer turn.
 - The computer turn uses the random library to generate these numbers. The numbers being generated are integers between 0 and 2 to fit the indexing of the game board.
-- I decided to add a computer turn so users if on their own can play.
+- I decided to add a computer turn so users can play on their own. 
  
 ![Computer Turn](/assets/images/computer-turn.png)
  
